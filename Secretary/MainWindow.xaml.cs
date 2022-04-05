@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using Microsoft.Win32;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+
 
 namespace Secretary
 {
@@ -20,6 +15,7 @@ namespace Secretary
     /// </summary>
     public partial class MainWindow : Window
     {
+        public String TextToConvert = "";
         public MainWindow()
         {
             InitializeComponent();
@@ -27,7 +23,7 @@ namespace Secretary
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            String TextToConvert = TextboxInput.Text;
+            TextToConvert = TextboxInput.Text;
             Trim(ref TextToConvert);
             TextBoxOutput.Text = TextToConvert;
         }
@@ -76,6 +72,27 @@ namespace Secretary
         {
             TextboxInput.Text = null;
             TextBoxOutput.Text = null;
+        }
+
+        private void GetFile_Button_Click(object sender, RoutedEventArgs e)
+        {
+            Import();
+            TextboxInput.Text = TextToConvert;
+
+        }
+        public void Import()
+        {
+            OpenFileDialog ofd = new OpenFileDialog(); // создаём процесс  
+            ofd.ShowDialog(); // открываем проводник    
+            if (ofd.FileName != "") // проверка на выбор файла  
+            {
+                StreamReader sr = new StreamReader(ofd.FileName); // открываем файл   
+                while (!sr.EndOfStream) // перебираем строки, пока они не закончены       
+                {
+                    TextToConvert += sr.ReadLine();
+                }
+            }
+            else MessageBox.Show("Файл не выбран");
         }
     }
 }

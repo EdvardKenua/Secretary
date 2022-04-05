@@ -13,5 +13,6 @@
         <Label Content="Вставьте текст" HorizontalAlignment="Left" Height="27" Margin="10,0,0,0" VerticalAlignment="Top" Width="321"/>
         <Label Content="Преобразованный текст" HorizontalAlignment="Left" Height="27" Margin="461,0,0,0" VerticalAlignment="Top" Width="325"/>
         <Button x:Name="Clear" Content="Очистить" HorizontalAlignment="Left" Height="26" Margin="336,177,0,0" VerticalAlignment="Top" Width="120" Click="Clear_Click"/>
+        <Button x:Name="GetFile_Button" Content="Вставить из файла" HorizontalAlignment="Left" Height="23" Margin="336,238,0,0" VerticalAlignment="Top" Width="120" Click="GetFile_Button_Click"/>
     </Grid>
 </Window>
